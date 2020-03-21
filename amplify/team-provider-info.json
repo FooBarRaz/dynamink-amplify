@@ -10,6 +10,11 @@
             "StackName": "amplify-dynamink-dev-225552",
             "StackId": "arn:aws:cloudformation:us-east-2:801215360931:stack/amplify-dynamink-dev-225552/7c96fe90-6b1f-11ea-aff5-0294f7a52ca2",
             "AmplifyAppId": "d2mxsx4cnycjgz"
+        },
+        "categories": {
+            "auth": {
+                "dynaminkf0801355": {}
+            }
         }
     }
 }

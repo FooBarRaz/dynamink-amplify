@@ -1,0 +1,41 @@
+{
+    "paths": [
+        {
+            "name": "/targets",
+            "lambdaFunction": "createTarget",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        }
+    ],
+    "resourceName": "target",
+    "apiName": "target",
+    "functionArns": [
+        {
+            "lambdaFunction": "createTarget"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-dynamink-dev-225552-authRole",
+        "unAuthRoleName": "amplify-dynamink-dev-225552-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "createTarget",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "tableName": "TargetSites",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S",
+    "sortKeyName": "userId",
+    "sortKeyType": "S"
+}
