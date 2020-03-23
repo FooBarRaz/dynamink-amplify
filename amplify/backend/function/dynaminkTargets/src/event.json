@@ -1,0 +1,47 @@
+{
+  "resource": "/targets/{proxy+}",
+  "path": "/targets/hellothere",
+  "httpMethod": "GET",
+  "headers": null,
+  "multiValueHeaders": null,
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": {
+    "proxy": "hellothere"
+  },
+  "stageVariables": null,
+  "requestContext": {
+    "resourceId": "6rkkur",
+    "resourcePath": "/targets/{proxy+}",
+    "httpMethod": "GET",
+    "extendedRequestId": "JzzfNFLwIAMFXnQ=",
+    "requestTime": "22/Mar/2020:20:36:49 +0000",
+    "path": "/targets/{proxy+}",
+    "accountId": "801215360931",
+    "protocol": "HTTP/1.1",
+    "stage": "test-invoke-stage",
+    "domainPrefix": "testPrefix",
+    "requestTimeEpoch": 1584909409213,
+    "requestId": "c18d4a43-1590-4faa-b0ec-4045ea9540ca",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "cognitoIdentityId": null,
+      "apiKey": "test-invoke-api-key",
+      "principalOrgId": null,
+      "cognitoAuthenticationType": null,
+      "userArn": "arn:aws:iam::801215360931:root",
+      "apiKeyId": "test-invoke-api-key-id",
+      "userAgent": "aws-internal/3 aws-sdk-java/1.11.719 Linux/4.9.184-0.1.ac.235.83.329.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation",
+      "accountId": "801215360931",
+      "caller": "801215360931",
+      "sourceIp": "test-invoke-source-ip",
+      "accessKey": "ASIA3VDBIF6R2ML3WLF2",
+      "cognitoAuthenticationProvider": null,
+      "user": "801215360931"
+    },
+    "domainName": "testPrefix.testDomainName",
+    "apiId": "ppc84p8vld"
+  },
+  "body": null,
+  "isBase64Encoded": false
+}

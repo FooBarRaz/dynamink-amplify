@@ -2,7 +2,7 @@
     "paths": [
         {
             "name": "/targets",
-            "lambdaFunction": "createTarget",
+            "lambdaFunction": "dynaminkTargets",
             "privacy": {
                 "private": true,
                 "auth": [
@@ -15,27 +15,28 @@
             }
         }
     ],
-    "resourceName": "target",
-    "apiName": "target",
+    "resourceName": "DynaminkAPI",
+    "apiName": "DynaminkAPI",
     "functionArns": [
         {
-            "lambdaFunction": "createTarget"
+            "lambdaFunction": "dynaminkTargets"
         }
     ],
     "privacy": {
         "auth": 1,
         "unauth": 0,
-        "authRoleName": "amplify-dynamink-dev-225552-authRole",
-        "unAuthRoleName": "amplify-dynamink-dev-225552-unauthRole"
+        "authRoleName": "amplify-dynamink-dev-130109-authRole",
+        "unAuthRoleName": "amplify-dynamink-dev-130109-unauthRole"
     },
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "createTarget",
+            "resourceName": "dynaminkTargets",
             "attributes": [
                 "Name",
                 "Arn"
             ]
         }
-    ]
+    ],
+    "uuid": "e8bb375a"
 }

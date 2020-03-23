@@ -83,15 +83,12 @@ Parameters:
   useDefault:
     Type: String
                       
-  usernameAttributes:
-    Type: CommaDelimitedList
-              
   userPoolGroupList:
     Type: CommaDelimitedList
-                          
+              
   dependsOn:
     Type: CommaDelimitedList
-    
+                
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
 
@@ -103,7 +100,7 @@ Resources:
   # Created to allow the UserPool SMS Config to publish via the Simple Notification Service during MFA Process
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, 'dynamif0801355_sns-role', !Join ['',[ 'sns', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, 'dynami12b70ec9_sns-role', !Join ['',[ 'sns', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument: 
         Version: "2012-10-17"
         Statement: 
@@ -115,10 +112,10 @@ Resources:
               - "sts:AssumeRole"
             Condition: 
               StringEquals:
-                sts:ExternalId: dynamif0801355_role_external_id
+                sts:ExternalId: dynami12b70ec9_role_external_id
       Policies: 
         - 
-          PolicyName: dynamif0801355-sns-policy
+          PolicyName: dynami12b70ec9-sns-policy
           PolicyDocument: 
             Version: "2012-10-17"
             Statement: 
@@ -159,14 +156,12 @@ Resources:
           RequireNumbers: false
           RequireSymbols: false
           RequireUppercase: false
-      
-      UsernameAttributes: !Ref usernameAttributes
           
       MfaConfiguration: !Ref mfaConfiguration
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsConfiguration: 
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: dynamif0801355_role_external_id
+        ExternalId: dynami12b70ec9_role_external_id
     
   
   UserPoolClientWeb:
@@ -174,7 +169,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: dynamif0801355_app_clientWeb
+      ClientName: dynami12b70ec9_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -184,7 +179,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: dynamif0801355_app_client
+      ClientName: dynami12b70ec9_app_client
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -249,7 +244,7 @@ Resources:
   # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: dynamif0801355_userpoolclient_lambda_iam_policy
+      PolicyName: dynami12b70ec9_userpoolclient_lambda_iam_policy
       Roles: 
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -266,7 +261,7 @@ Resources:
   # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: dynamif0801355_userpoolclient_lambda_log_policy
+      PolicyName: dynami12b70ec9_userpoolclient_lambda_log_policy
       Roles: 
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -306,7 +301,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties: 
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'dynaminkf0801355_identitypool_f0801355', !Join ['',['dynaminkf0801355_identitypool_f0801355', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'dynamink12b70ec9_identitypool_12b70ec9', !Join ['',['dynamink12b70ec9_identitypool_12b70ec9', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient

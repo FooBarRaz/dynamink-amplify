@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "dynaminkf0801355_identitypool_f0801355",
+    "identityPoolName": "dynamink12b70ec9_identitypool_12b70ec9",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "dynamif0801355",
-    "userPoolName": "dynaminkf0801355_userpool_f0801355",
+    "resourceNameTruncated": "dynami12b70ec9",
+    "userPoolName": "dynamink12b70ec9_userpool_12b70ec9",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "dynamif0801355_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "dynami12b70ec9_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "dynaminkf0801355",
+    "resourceName": "dynamink12b70ec9",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -45,9 +45,8 @@
         ]
     },
     "useDefault": "default",
-    "usernameAttributes": [
-        "email"
+    "userPoolGroupList": [
+        "DynaminkUsers"
     ],
-    "userPoolGroupList": [],
     "dependsOn": []
 }

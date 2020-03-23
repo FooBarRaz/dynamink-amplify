@@ -47,11 +47,6 @@
                   {
                       "AttributeName": "targetSite",
                       "AttributeType": "S"
-                  }  , 
-                  
-                  {
-                      "AttributeName": "userId",
-                      "AttributeType": "S"
                   } 
                   
                 ],
@@ -63,7 +58,7 @@
                   }  , 
                   
                   {
-                    "AttributeName": "userId",
+                    "AttributeName": "targetSite",
                     "KeyType": "RANGE"
                   } 
                   
@@ -98,29 +93,6 @@
                         }
                     ]
                 }
-                
-                ,"GlobalSecondaryIndexes": [
-                  
-                    {
-                        "IndexName": "uniqueDestination",
-                        "KeySchema": [
-                            
-                            {
-                                "AttributeName": "targetSite",
-                                "KeyType": "HASH"
-                            } 
-                            
-                        ],
-                        "Projection": {
-                            "ProjectionType": "ALL"
-                        },
-                        "ProvisionedThroughput": {
-                            "ReadCapacityUnits": "5",
-                            "WriteCapacityUnits": "5"
-                        }
-                    } 
-                  
-                ]
                 
             }
         }
