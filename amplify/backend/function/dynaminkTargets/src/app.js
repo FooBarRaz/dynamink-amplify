@@ -170,6 +170,8 @@ app.put(path, function (req, res) {
  *************************************/
 
 app.post(path, function (req, res) {
+  console.log(`REQ BODY: ${JSON.stringify(req.body)}`)
+  console.log(`REQ EVENT: ${JSON.stringify(req.apiGateway.event)}`)
   if (userIdPresent) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
   }

@@ -1,47 +1,83 @@
 {
-  "resource": "/targets/{proxy+}",
-  "path": "/targets/hellothere",
+  "body": "{ \"targetSite\": \"test\",\n    \"configuration\": {\n      \"type\": \"REDIRECT\",\n      \"value\": \"https://en.wikipedia.org/wiki/Special:Random\"\n    }\n  },",
+  "resource": "/hellothere123",
+  "path": "/targets/hellothere123",
   "httpMethod": "GET",
-  "headers": null,
-  "multiValueHeaders": null,
-  "queryStringParameters": null,
-  "multiValueQueryStringParameters": null,
-  "pathParameters": {
-    "proxy": "hellothere"
+  "isBase64Encoded": true,
+  "headers": {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Encoding": "gzip, deflate, sdch",
+    "Accept-Language": "en-US,en;q=0.8",
+    "Cache-Control": "max-age=0",
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "US",
+    "Host": "1234567890.execute-api.us-east-1.amazonaws.com",
+    "Upgrade-Insecure-Requests": "1",
+    "User-Agent": "Custom User Agent String",
+    "Via": "1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "cDehVQoZnx43VYQb9j2-nvCh-9z396Uhbp027Y2JvkCPNLmGJHqlaA==",
+    "X-Forwarded-For": "127.0.0.1, 127.0.0.2",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
   },
-  "stageVariables": null,
-  "requestContext": {
-    "resourceId": "6rkkur",
-    "resourcePath": "/targets/{proxy+}",
-    "httpMethod": "GET",
-    "extendedRequestId": "JzzfNFLwIAMFXnQ=",
-    "requestTime": "22/Mar/2020:20:36:49 +0000",
-    "path": "/targets/{proxy+}",
-    "accountId": "801215360931",
-    "protocol": "HTTP/1.1",
-    "stage": "test-invoke-stage",
-    "domainPrefix": "testPrefix",
-    "requestTimeEpoch": 1584909409213,
-    "requestId": "c18d4a43-1590-4faa-b0ec-4045ea9540ca",
-    "identity": {
-      "cognitoIdentityPoolId": null,
-      "cognitoIdentityId": null,
-      "apiKey": "test-invoke-api-key",
-      "principalOrgId": null,
-      "cognitoAuthenticationType": null,
-      "userArn": "arn:aws:iam::801215360931:root",
-      "apiKeyId": "test-invoke-api-key-id",
-      "userAgent": "aws-internal/3 aws-sdk-java/1.11.719 Linux/4.9.184-0.1.ac.235.83.329.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation",
-      "accountId": "801215360931",
-      "caller": "801215360931",
-      "sourceIp": "test-invoke-source-ip",
-      "accessKey": "ASIA3VDBIF6R2ML3WLF2",
-      "cognitoAuthenticationProvider": null,
-      "user": "801215360931"
-    },
-    "domainName": "testPrefix.testDomainName",
-    "apiId": "ppc84p8vld"
-  },
-  "body": null,
-  "isBase64Encoded": false
+  "multiValueHeaders": {
+    "Accept": [
+      "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+    ],
+    "Accept-Encoding": [
+      "gzip, deflate, sdch"
+    ],
+    "Accept-Language": [
+      "en-US,en;q=0.8"
+    ],
+    "Cache-Control": [
+      "max-age=0"
+    ],
+    "CloudFront-Forwarded-Proto": [
+      "https"
+    ],
+    "CloudFront-Is-Desktop-Viewer": [
+      "true"
+    ],
+    "CloudFront-Is-Mobile-Viewer": [
+      "false"
+    ],
+    "CloudFront-Is-SmartTV-Viewer": [
+      "false"
+    ],
+    "CloudFront-Is-Tablet-Viewer": [
+      "false"
+    ],
+    "CloudFront-Viewer-Country": [
+      "US"
+    ],
+    "Host": [
+      "0123456789.execute-api.us-east-1.amazonaws.com"
+    ],
+    "Upgrade-Insecure-Requests": [
+      "1"
+    ],
+    "User-Agent": [
+      "Custom User Agent String"
+    ],
+    "Via": [
+      "1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)"
+    ],
+    "X-Amz-Cf-Id": [
+      "cDehVQoZnx43VYQb9j2-nvCh-9z396Uhbp027Y2JvkCPNLmGJHqlaA=="
+    ],
+    "X-Forwarded-For": [
+      "127.0.0.1, 127.0.0.2"
+    ],
+    "X-Forwarded-Port": [
+      "443"
+    ],
+    "X-Forwarded-Proto": [
+      "https"
+    ]
+  }
 }
