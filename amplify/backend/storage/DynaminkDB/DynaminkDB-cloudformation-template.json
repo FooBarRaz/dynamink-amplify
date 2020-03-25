@@ -12,13 +12,6 @@
             "Type": "String"
         },
         
-        "sortKeyName": {
-            "Type": "String"
-        },
-        "sortKeyType": {
-            "Type": "String"
-        },
-        
         "tableName": {
             "Type": "String"
         }
@@ -40,12 +33,12 @@
                 "AttributeDefinitions": [
                   
                   {
-                      "AttributeName": "id",
+                      "AttributeName": "targetSite",
                       "AttributeType": "S"
                   }  , 
                   
                   {
-                      "AttributeName": "targetSite",
+                      "AttributeName": "user",
                       "AttributeType": "S"
                   } 
                   
@@ -53,13 +46,8 @@
                 "KeySchema": [
                   
                   {
-                    "AttributeName": "id",
-                    "KeyType": "HASH"
-                  }  , 
-                  
-                  {
                     "AttributeName": "targetSite",
-                    "KeyType": "RANGE"
+                    "KeyType": "HASH"
                   } 
                   
                 ],
@@ -94,6 +82,29 @@
                     ]
                 }
                 
+                ,"GlobalSecondaryIndexes": [
+                  
+                    {
+                        "IndexName": "user",
+                        "KeySchema": [
+                            
+                            {
+                                "AttributeName": "user",
+                                "KeyType": "HASH"
+                            } 
+                            
+                        ],
+                        "Projection": {
+                            "ProjectionType": "ALL"
+                        },
+                        "ProvisionedThroughput": {
+                            "ReadCapacityUnits": "5",
+                            "WriteCapacityUnits": "5"
+                        }
+                    } 
+                  
+                ]
+                
             }
         }
     },
@@ -127,17 +138,6 @@
         "PartitionKeyType": {
             "Value": {
                 "Ref": "partitionKeyType"
-            }
-        },
-        
-        "SortKeyName": {
-            "Value": {
-                "Ref": "sortKeyName"
-            }
-        },
-        "SortKeyType": {
-            "Value": {
-                "Ref": "sortKeyType"
             }
         },
         

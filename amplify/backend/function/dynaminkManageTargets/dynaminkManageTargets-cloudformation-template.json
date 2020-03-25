@@ -36,12 +36,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"manageTargets",
+						"dynamink_manage_targets",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"manageTargets",
+									"dynamink_manage_targets",
 									"-",
 									{
 										"Ref": "env"
@@ -71,7 +71,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-dynamink-dev-130109-deployment",
-					"S3Key": "amplify-builds/dynaminkTargets-516c745332344b6c6934-build.zip"
+					"S3Key": "amplify-builds/dynaminkManageTargets-32776754774b6a6f6175-build.zip"
 				}
 			}
 		},
@@ -81,12 +81,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"dynaminkLambdaRole5eb326af",
+						"dynaminkLambdaRoleb4e7bf1c",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"dynaminkLambdaRole5eb326af",
+									"dynaminkLambdaRoleb4e7bf1c",
 									"-",
 									{
 										"Ref": "env"

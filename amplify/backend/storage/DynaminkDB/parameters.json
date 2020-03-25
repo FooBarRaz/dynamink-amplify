@@ -1,7 +1,5 @@
 {
-    "tableName": "TargetSites",
-    "partitionKeyName": "id",
-    "partitionKeyType": "S",
-    "sortKeyName": "targetSite",
-    "sortKeyType": "S"
+    "tableName": "dynamink_targets",
+    "partitionKeyName": "targetSite",
+    "partitionKeyType": "S"
 }

@@ -2,7 +2,7 @@
     "paths": [
         {
             "name": "/targets",
-            "lambdaFunction": "dynaminkTargets",
+            "lambdaFunction": "dynaminkManageTargets",
             "privacy": {
                 "private": true,
                 "auth": [
@@ -15,11 +15,11 @@
             }
         }
     ],
-    "resourceName": "DynaminkAPI",
-    "apiName": "DynaminkAPI",
+    "resourceName": "DynaminkREST",
+    "apiName": "DynaminkREST",
     "functionArns": [
         {
-            "lambdaFunction": "dynaminkTargets"
+            "lambdaFunction": "dynaminkManageTargets"
         }
     ],
     "privacy": {
@@ -31,12 +31,11 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "dynaminkTargets",
+            "resourceName": "dynaminkManageTargets",
             "attributes": [
                 "Name",
                 "Arn"
             ]
         }
-    ],
-    "uuid": "e8bb375a"
+    ]
 }
