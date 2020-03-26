@@ -1,0 +1,14 @@
+{
+    "permissions": {
+        "auth": {
+            "dynamink12b70ec9": [
+                "read"
+            ]
+        },
+        "storage": {
+            "DynaminkDB": [
+                "read"
+            ]
+        }
+    }
+}
