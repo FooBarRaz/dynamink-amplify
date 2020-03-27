@@ -22,7 +22,7 @@ exports.handler = async (event) => {
     let queryParams = {
         TableName: tableName,
         Key: {
-            partitionKeyName: {
+            [partitionKeyName]: {
                 S: event.pathParameters.targetSite
             }
         },
