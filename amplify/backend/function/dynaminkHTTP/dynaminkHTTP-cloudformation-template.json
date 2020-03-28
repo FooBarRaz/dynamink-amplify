@@ -84,7 +84,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-dynamink-dev-130109-deployment",
-					"S3Key": "amplify-builds/dynaminkHTTP-6d4f61364c507a79326d-build.zip"
+					"S3Key": "amplify-builds/dynaminkHTTP-39446631486a67474668-build.zip"
 				}
 			}
 		},
