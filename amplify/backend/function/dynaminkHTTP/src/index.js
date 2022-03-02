@@ -18,7 +18,6 @@ if (process.env.ENV && process.env.ENV !== "NONE") {
 const partitionKeyName = "targetSite";
 
 exports.handler = async (event) => {
-    console.log(`fetching ${event.pathParameters.targetSite}`)
     let queryParams = {
         TableName: tableName,
         Key: {
@@ -30,7 +29,6 @@ exports.handler = async (event) => {
         .get(queryParams)
         .promise()
         .then((result) => {
-            console.log('result: ' + JSON.stringify(result))
             if (result.Item) {
                 return {
                     statusCode: 302,
