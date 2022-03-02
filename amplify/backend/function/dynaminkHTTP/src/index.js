@@ -29,15 +29,11 @@ exports.handler = async (event) => {
         .get(queryParams)
         .promise()
         .then((result) => {
-            if (result.Item) {
-                return {
-                    statusCode: 302,
-                    headers: {
-                        Location: result.Item.configuration.value
-                    }
+            return result.Item ? {
+                statusCode: 302,
+                headers: {
+                    Location: result.Item.configuration.value
                 }
-            } else {
-                return {statusCode: 404}
-            }
+            } : {statusCode: 404};
         });
 };

@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import CreateTargetSite from "./CreateTargetSite";
+import CreateTargetSite from "./feautures/create-link/CreateTargetSite";
 
 const routing = (
     <React.StrictMode>

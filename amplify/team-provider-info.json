@@ -38,7 +38,7 @@
         },
         "dynaminkHTTP": {
           "deploymentBucketName": "amplify-dynamink-local-210925-deployment",
-          "s3Key": "amplify-builds/dynaminkHTTP-71434c3756596d336c46-build.zip"
+          "s3Key": "amplify-builds/dynaminkHTTP-4b7a4467504d33556232-build.zip"
         }
       },
       "auth": {

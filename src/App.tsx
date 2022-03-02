@@ -7,7 +7,6 @@ import awsconfig from './aws-exports'; // if you are using Amplify CLI
 Amplify.configure(awsconfig);
 
 function App() {
-  console.log("loaded app component")
   return (
     <div className="App">
       <header className="App-header">
