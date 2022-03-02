@@ -6,14 +6,16 @@ interface State {
     siteName: string,
     redirectUrl: string,
     errors: string[]
+    success?: string;
 }
 
 const CreateTargetSite = () => {
-    const initialState: State = {siteName: '', redirectUrl: '', errors: []};
+    const initialState: State = {siteName: '', redirectUrl: '', errors: [] };
     const [state, setState] = useState(initialState);
 
     function createSite() {
         console.log(`making api call to create site: ${state.siteName} that redirects to ${state.redirectUrl}`)
+        setState({...state, success: undefined, errors: []})
         const request = {
             headers: {
                 "Accept": "application/json",
@@ -45,6 +47,7 @@ const CreateTargetSite = () => {
                     }
                 )
             }
+            { state.success && <div>successfully created link</div> }
         </div>
     )
 }

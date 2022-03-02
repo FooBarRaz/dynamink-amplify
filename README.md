@@ -1,3 +1,9 @@
+# Dynamink
+
+Dynamink lets you generate dynamic links that can redirect to a target of your choosing. 
+To create a link, simply specify the host id (must be globally unique) and the target location. 
+
+Once the link is generated, you can go to dynam.ink/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

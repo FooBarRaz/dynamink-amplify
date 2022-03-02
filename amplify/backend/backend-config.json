@@ -1,89 +1,70 @@
 {
-	"auth": {
-		"dynamink12b70ec9": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": []
-		}
-	},
-	"storage": {
-		"DynaminkDB": {
-			"service": "DynamoDB",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"function": {
-		"testFunc": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
-		},
-		"dynaminkManageTargets": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "storage",
-					"resourceName": "DynaminkDB",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		},
-		"dynaminkHTTP": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "auth",
-					"resourceName": "dynamink12b70ec9",
-					"attributes": [
-						"UserPoolId"
-					]
-				},
-				{
-					"category": "storage",
-					"resourceName": "DynaminkDB",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		}
-	},
-	"api": {
-		"testApi2": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "testFunc",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		},
-		"DynaminkREST": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "dynaminkManageTargets",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			]
-		}
-	}
+  "auth": {
+    "dynamink12b70ec9": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
+  },
+  "storage": {
+    "DynaminkDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "function": {
+    "dynaminkManageTargets": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "DynaminkDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "dynaminkHTTP": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "dynamink12b70ec9",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "DynaminkDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  },
+  "api": {
+    "DynaminkREST": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "dynaminkManageTargets",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  }
 }
