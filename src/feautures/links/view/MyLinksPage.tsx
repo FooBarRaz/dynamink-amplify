@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useEffect } from 'react';
 import { withAuthenticator } from 'aws-amplify-react';
 import { LinksGrid } from './LinksGrid';
+import { Typography } from '@mui/material';
 
 type Props = {
 
@@ -20,6 +21,7 @@ const MyLinksPage = (props: Props) => {
 
     return (
         <div>
+            <Typography variant="h4">My Dynamic Links</Typography>
             <LinksGrid links={myLinks}/>
         </div>
     );

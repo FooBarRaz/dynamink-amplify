@@ -28,9 +28,7 @@ const linksSlice = createSlice({
                         ({...eachLink, name: decodeURI(eachLink.name)}))
             },
             setCreationSuccess(state, action: PayloadAction<Link>) {
-                const baseUrl = 'https://od70m57nm1.execute-api.us-east-1.amazonaws.com/dev/'
-                const newId = action.payload.targetSite
-                const message = baseUrl + newId
+                const message = toLink(action.payload.targetSite)
 
                 state.creation.successMessage = message
                 state.myLinks.push(action.payload)
@@ -45,6 +43,12 @@ const linksSlice = createSlice({
         }
     }
 )
+
+export const toLink = (target: string) => {
+    const baseUrl = 'https://od70m57nm1.execute-api.us-east-1.amazonaws.com/dev/'
+    const newId = target
+    return baseUrl + newId
+}
 
 export const reducer = linksSlice.reducer;
 
