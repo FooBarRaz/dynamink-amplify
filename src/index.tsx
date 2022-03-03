@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import CreateTargetSite from "./feautures/links/create/CreatePage";
 import { store } from './app/store';
 import { Provider } from 'react-redux';
+import MyLinksPage from './feautures/links/view/MyLinksPage';
 
 const routing = (
     <React.StrictMode>
@@ -15,6 +16,9 @@ const routing = (
                 <Switch>
                     <Route path="/create">
                         <CreateTargetSite/>
+                    </Route>
+                    <Route path="/my-links">
+                        <MyLinksPage/>
                     </Route>
                     <Route path="/">
                         <App/>

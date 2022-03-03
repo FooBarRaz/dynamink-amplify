@@ -169,7 +169,7 @@ app.post(path, function (req, res) {
 
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
 
-    const targetSite = encodeURI(req.body.targetSite)
+    const targetSite = req.body.targetSite
     const id = nanoid(10);
 
     const item = {

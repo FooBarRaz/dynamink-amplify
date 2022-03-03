@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { API } from 'aws-amplify';
-
-type Link = any;
+import { RootState } from '../../app/store';
+import { Link } from './types';
 
 type LinkState = {
     myLinks: Link[],
@@ -22,8 +22,10 @@ const linksSlice = createSlice({
         name: 'links',
         initialState,
         reducers: {
-            setLinks(state, action: PayloadAction<any>) {
+            setLinks(state, action: PayloadAction<Link[]>) {
                 state.myLinks = action.payload
+                    .map(eachLink =>
+                        ({...eachLink, name: decodeURI(eachLink.name)}))
             },
             setCreationSuccess(state, action: PayloadAction<string>) {
                 state.creation.successMessage = action.payload
@@ -50,6 +52,7 @@ type CreateSiteRequest = {
 }
 export const createLink = createAsyncThunk('links/create',
     (payload: CreateSiteRequest, options) => {
+        options.dispatch(actions.beginCreation())
         const request = {
             headers: {
                 "Accept": "application/json",
@@ -87,11 +90,16 @@ export const fetchAllMyLinks = createAsyncThunk('links/fetchAll',
                 return options.dispatch(actions.setLinks(resp));
             })
             .catch(err => options.dispatch(actions.setCreationError(err.message)))
-});
+    });
 
 export const actions = {
     ...linksSlice.actions,
     createLink,
     fetchAllMyLinks
 }
+
+// selectors
+
+export const selectMyLinks = (state: RootState) => state.links.myLinks
+
 
