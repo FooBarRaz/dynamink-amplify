@@ -175,7 +175,7 @@ app.post(path, function(req, res) {
   const item = {
     targetSite: targetSite,
     configuration: {
-      type: "REDIRECT",
+      type: "URL",
       value: req.body.redirectUrl
     },
     user: req.body.userId

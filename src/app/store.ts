@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { reducer as linksReducer } from '../feautures/links/linksStore'
 
 export const store = configureStore({
     reducer: {
+        links: linksReducer
     },
 })
 
