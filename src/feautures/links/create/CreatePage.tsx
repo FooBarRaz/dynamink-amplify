@@ -66,7 +66,7 @@ const CreatePage = () => {
             <label>Link name:</label>
             <input type="text" name="siteName" onChange={({target: {value}}) => setState({...state, siteName: value})}/>
             <br/>
-            <TextField label="Name" variant="standard"/>
+            {/*<TextField label="Name" variant="standard"/>*/}
             <label> Redirect to:</label>
             <input type="text" name="redirectUrl"
                    onChange={({target: {value}}) => setState({...state, redirectUrl: value})}/>
@@ -77,8 +77,8 @@ const CreatePage = () => {
                     }
                 )
             }
-            {successMessage && <div>successfully created link: {successMessage}</div>}
-            {errors && !!errors.length && <div>failed to create link: {JSON.stringify(errors)}</div>}
+            {successMessage && <div>successfully created link: <a href={successMessage}>{successMessage}</a></div>}
+            {errors && !!errors.length ? <div>failed to create link: {JSON.stringify(errors)}</div> : null }
         </div>
     )
 }
