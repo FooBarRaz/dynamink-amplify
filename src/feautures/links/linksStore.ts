@@ -27,8 +27,13 @@ const linksSlice = createSlice({
                     .map(eachLink =>
                         ({...eachLink, name: decodeURI(eachLink.name)}))
             },
-            setCreationSuccess(state, action: PayloadAction<string>) {
-                state.creation.successMessage = action.payload
+            setCreationSuccess(state, action: PayloadAction<Link>) {
+                const baseUrl = 'https://od70m57nm1.execute-api.us-east-1.amazonaws.com/dev/'
+                const newId = action.payload.targetSite
+                const message = baseUrl + newId
+
+                state.creation.successMessage = message
+                state.myLinks.push(action.payload)
             },
             setCreationError(state, action: PayloadAction<string>) {
                 state.creation.errors = [action.payload]
@@ -66,12 +71,7 @@ export const createLink = createAsyncThunk('links/create',
         }
         API.post("DynaminkREST", "/targets", request)
             .then(resp => {
-                const baseUrl = 'https://od70m57nm1.execute-api.us-east-1.amazonaws.com/dev/'
-                const newId = resp.data.targetSite
-
-                const message = baseUrl + newId
-
-                return options.dispatch(actions.setCreationSuccess(message));
+                return options.dispatch(actions.setCreationSuccess(resp.data));
             })
             .catch(err => options.dispatch(actions.setCreationError(err.message)))
     });

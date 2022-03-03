@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { withAuthenticator } from "aws-amplify-react";
 import { Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { actions as linkActions } from '../linksStore';
+import { actions as linkActions, selectMyLinks } from '../linksStore';
 import { CreateSiteForm } from './CreateSiteForm';
+import { LinksGrid } from '../view/LinksGrid';
 //
 // type LinkValues = {
 //     'url': string
@@ -27,6 +28,7 @@ import { CreateSiteForm } from './CreateSiteForm';
 
 const CreatePage = () => {
     const dispatch = useAppDispatch()
+    const links = useAppSelector(selectMyLinks)
 
     useEffect(() => {
         dispatch(linkActions.fetchAllMyLinks())
@@ -36,6 +38,7 @@ const CreatePage = () => {
         <div>
             <Typography variant="h4">Create a Dynamic Link</Typography>
             <CreateSiteForm />
+            <LinksGrid links={links} />
         </div>
     )
 }
