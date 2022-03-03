@@ -34,7 +34,7 @@
       "function": {
         "dynaminkManageTargets": {
           "deploymentBucketName": "amplify-dynamink-local-210925-deployment",
-          "s3Key": "amplify-builds/dynaminkManageTargets-387a476c4f2b64547930-build.zip"
+          "s3Key": "amplify-builds/dynaminkManageTargets-4f386577544b57693643-build.zip"
         },
         "dynaminkHTTP": {
           "deploymentBucketName": "amplify-dynamink-local-210925-deployment",

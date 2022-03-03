@@ -22,6 +22,9 @@ const linksSlice = createSlice({
         name: 'links',
         initialState,
         reducers: {
+            setLinks(state, action: PayloadAction<any>) {
+                state.myLinks = action.payload
+            },
             setCreationSuccess(state, action: PayloadAction<string>) {
                 state.creation.successMessage = action.payload
             },
@@ -70,8 +73,25 @@ export const createLink = createAsyncThunk('links/create',
             .catch(err => options.dispatch(actions.setCreationError(err.message)))
     });
 
+export const fetchAllMyLinks = createAsyncThunk('links/fetchAll',
+    (payload, options) => {
+        const request = {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+        }
+
+        API.get("DynaminkREST", "/targets", request)
+            .then(resp => {
+                return options.dispatch(actions.setLinks(resp));
+            })
+            .catch(err => options.dispatch(actions.setCreationError(err.message)))
+});
+
 export const actions = {
     ...linksSlice.actions,
-    createLink
+    createLink,
+    fetchAllMyLinks
 }
 

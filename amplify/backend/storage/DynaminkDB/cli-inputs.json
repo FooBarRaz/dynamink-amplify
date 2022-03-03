@@ -1,0 +1,25 @@
+{
+  "resourceName": "DynaminkDB",
+  "tableName": "dynamink_targets",
+  "partitionKey": {
+    "fieldName": "targetSite",
+    "fieldType": "string"
+  },
+  "triggerFunctions": [],
+  "gsi": [
+    {
+      "name": "user",
+      "partitionKey": {
+        "fieldName": "user",
+        "fieldType": "string"
+      }
+    },
+    {
+      "name": "user",
+      "partitionKey": {
+        "fieldName": "user",
+        "fieldType": "string"
+      }
+    }
+  ]
+}

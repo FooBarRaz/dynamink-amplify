@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withAuthenticator } from "aws-amplify-react";
 import { API } from 'aws-amplify';
 import { TextField, Typography } from '@mui/material';
@@ -36,9 +36,14 @@ const CreatePage = () => {
     const initialState: State = {siteName: '', redirectUrl: '', errors: []};
     const [state, setState] = useState(initialState);
     const dispatch = useAppDispatch()
-    const {errors, successMessage} = useAppSelector(state => state.links.creation);
+    const {myLinks, creation} = useAppSelector(state => state.links);
+    const {errors, successMessage} = creation;
 
     const createLink = (siteName: string, url: string) => dispatch(linkActions.createLink({siteName, url}))
+
+    useEffect(() => {
+        dispatch(linkActions.fetchAllMyLinks())
+    }, [])
 
     function createSite() {
         createLink(state.siteName, state.redirectUrl);
@@ -79,6 +84,7 @@ const CreatePage = () => {
             }
             {successMessage && <div>successfully created link: <a href={successMessage}>{successMessage}</a></div>}
             {errors && !!errors.length ? <div>failed to create link: {JSON.stringify(errors)}</div> : null }
+            {myLinks && !!myLinks.length ? <div>{JSON.stringify(myLinks)}</div> : null }
         </div>
     )
 }

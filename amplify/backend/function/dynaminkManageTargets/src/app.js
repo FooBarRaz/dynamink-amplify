@@ -23,6 +23,8 @@ if (process.env.ENV && process.env.ENV !== "NONE") {
 const userIdPresent = false; // TODO: update in case is required to use that definition
 const partitionKeyName = "targetSite";
 const partitionKeyType = "S";
+const userPartitionKeyName = 'user';
+const userIndexName = 'user';
 const sortKeyName = "";
 const sortKeyType = "";
 const hasSortKey = sortKeyName !== "";
@@ -56,17 +58,17 @@ const convertUrlType = (param, type) => {
  * HTTP Get method for list objects *
  ********************************/
 
-app.get(path + hashKeyPath, function (req, res) {
+app.get(path, function (req, res) {
     var condition = {}
-    condition[partitionKeyName] = {
+    condition[userPartitionKeyName] = {
         ComparisonOperator: 'EQ'
     }
 
-    if (userIdPresent && req.apiGateway) {
-        condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH];
+    if (req.apiGateway) {
+        condition[userPartitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId];
     } else {
         try {
-            condition[partitionKeyName]['AttributeValueList'] = [convertUrlType(req.params[partitionKeyName], partitionKeyType)];
+            condition[userPartitionKeyName]['AttributeValueList'] = [convertUrlType(req.params[userPartitionKeyName], partitionKeyType)];
         } catch (err) {
             res.statusCode = 500;
             res.json({error: 'Wrong column type ' + err});
@@ -75,6 +77,7 @@ app.get(path + hashKeyPath, function (req, res) {
 
     let queryParams = {
         TableName: tableName,
+        IndexName: userIndexName,
         KeyConditions: condition
     }
 
