@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "captcha-define-challenge"
+  ],
+  "parentResource": "dynamink679bb9f9",
+  "functionName": "dynamink679bb9f9DefineAuthChallenge",
+  "resourceName": "dynamink679bb9f9DefineAuthChallenge",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/home/raz/.nvm/versions/node/v14.19.0/lib/node_modules/@aws-amplify/cli/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/DefineAuthChallenge",
+  "triggerTemplate": "DefineAuthChallenge.json.ejs",
+  "triggerEventPath": "DefineAuthChallenge.event.json",
+  "roleName": "dynamink679bb9f9DefineAuthChallenge",
+  "skipEdit": true,
+  "enableCors": false
+}

@@ -2,20 +2,41 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"Amplify\",\"createdWith\":\"7.6.15\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
+    "RECAPTCHASECRET": {
+      "Type": "String",
+      "Default": ""
+    },
+    "modules": {
+      "Type": "String",
+      "Default": "",
+      "Description": "Comma-delimited list of modules to be executed by a lambda trigger. Sent to resource as an env variable."
+    },
+    "resourceName": {
+      "Type": "String",
+      "Default": ""
+    },
+    "trigger": {
+      "Type": "String",
+      "Default": "true"
+    },
+    "functionName": {
+      "Type": "String",
+      "Default": ""
+    },
+    "roleName": {
+      "Type": "String",
+      "Default": ""
+    },
+    "parentResource": {
+      "Type": "String",
+      "Default": ""
+    },
+    "parentStack": {
+      "Type": "String",
+      "Default": ""
+    },
     "env": {
       "Type": "String"
-    },
-    "authdynamink12b70ec9UserPoolId": {
-      "Type": "String",
-      "Default": "authdynamink12b70ec9UserPoolId"
-    },
-    "storageDynaminkDBName": {
-      "Type": "String",
-      "Default": "storageDynaminkDBName"
-    },
-    "storageDynaminkDBArn": {
-      "Type": "String",
-      "Default": "storageDynaminkDBArn"
     },
     "deploymentBucketName": {
       "Type": "String"
@@ -46,12 +67,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "dynaminkHTTP",
+            "dynamink679bb9f9VerifyAuthChallengeResponse",
             {
               "Fn::Join": [
                 "",
                 [
-                  "dynaminkHTTP",
+                  "dynamink679bb9f9VerifyAuthChallengeResponse",
                   "-",
                   {
                     "Ref": "env"
@@ -66,17 +87,14 @@
             "ENV": {
               "Ref": "env"
             },
+            "MODULES": {
+              "Ref": "modules"
+            },
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "AUTH_DYNAMINK12B70EC9_USERPOOLID": {
-              "Ref": "authdynamink12b70ec9UserPoolId"
-            },
-            "STORAGE_DYNAMINKDB_NAME": {
-              "Ref": "storageDynaminkDBName"
-            },
-            "STORAGE_DYNAMINKDB_ARN": {
-              "Ref": "storageDynaminkDBArn"
+            "RECAPTCHASECRET": {
+              "Ref": "RECAPTCHASECRET"
             }
           }
         },
@@ -86,8 +104,8 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs12.x",
-        "Timeout": "25",
+        "Runtime": "nodejs14.x",
+        "Timeout": 25,
         "Code": {
           "S3Bucket": {
             "Ref": "deploymentBucketName"
@@ -104,12 +122,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "dynaminkLambdaRoledba47304",
+            "dynamink679bb9f9VerifyAuthChallengeResponse",
             {
               "Fn::Join": [
                 "",
                 [
-                  "dynaminkLambdaRoledba47304",
+                  "dynamink679bb9f9VerifyAuthChallengeResponse",
                   "-",
                   {
                     "Ref": "env"
@@ -179,92 +197,6 @@
           ]
         }
       }
-    },
-    "AmplifyResourcesPolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "cognito-identity:Describe*",
-                "cognito-identity:Get*",
-                "cognito-identity:List*",
-                "cognito-idp:Describe*",
-                "cognito-idp:AdminGetDevice",
-                "cognito-idp:AdminGetUser",
-                "cognito-idp:AdminList*",
-                "cognito-idp:List*",
-                "cognito-sync:Describe*",
-                "cognito-sync:Get*",
-                "cognito-sync:List*",
-                "iam:ListOpenIdConnectProviders",
-                "iam:ListRoles",
-                "sns:ListPlatformApplications"
-              ],
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:cognito-idp:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":userpool/",
-                      {
-                        "Ref": "authdynamink12b70ec9UserPoolId"
-                      }
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageDynaminkDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageDynaminkDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      }
     }
   },
   "Outputs": {
@@ -281,14 +213,14 @@
         ]
       }
     },
-    "Region": {
-      "Value": {
-        "Ref": "AWS::Region"
-      }
-    },
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
       }
     }
   }

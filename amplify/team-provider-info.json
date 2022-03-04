@@ -34,21 +34,30 @@
       "function": {
         "dynaminkManageTargets": {
           "deploymentBucketName": "amplify-dynamink-local-210925-deployment",
-          "s3Key": "amplify-builds/dynaminkManageTargets-38506c4a744535696a67-build.zip"
+          "s3Key": "amplify-builds/dynaminkManageTargets-706c576c37395537336e-build.zip"
         },
-        "dynaminkHTTP": {
+        "dynamink679bb9f9DefineAuthChallenge": {
           "deploymentBucketName": "amplify-dynamink-local-210925-deployment",
-          "s3Key": "amplify-builds/dynaminkHTTP-767949764f5978753563-build.zip"
+          "s3Key": "amplify-builds/dynamink679bb9f9DefineAuthChallenge-6b324a64636c6e563170-build.zip"
+        },
+        "dynamink679bb9f9CreateAuthChallenge": {
+          "deploymentBucketName": "amplify-dynamink-local-210925-deployment",
+          "s3Key": "amplify-builds/dynamink679bb9f9CreateAuthChallenge-4a795a6d59394f674b64-build.zip"
+        },
+        "dynamink679bb9f9VerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": "",
+          "deploymentBucketName": "amplify-dynamink-local-210925-deployment",
+          "s3Key": "amplify-builds/dynamink679bb9f9VerifyAuthChallengeResponse-565163444c2b79754975-build.zip"
         }
-      },
-      "auth": {
-        "dynamink12b70ec9": {}
       },
       "hosting": {
         "amplifyhosting": {
           "appId": "dftx41d98ee3r",
           "type": "cicd"
         }
+      },
+      "auth": {
+        "dynamink679bb9f9": {}
       }
     }
   }

@@ -145,9 +145,10 @@ app.put(path + '/:linkId', function (req, res) {
 
     req.body['user'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
 
-    let putItemParams = {
+    const linkId = req.params['linkId'];
+    const putItemParams = {
         TableName: tableName,
-        Key: { targetSite: req.params['linkId'] },
+        Key: { targetSite: linkId },
         Item: req.body
     }
     dynamodb.put(putItemParams, (err, data) => {

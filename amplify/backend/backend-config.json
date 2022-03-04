@@ -1,9 +1,56 @@
 {
   "auth": {
-    "dynamink12b70ec9": {
+    "dynamink679bb9f9": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "dynamink679bb9f9DefineAuthChallenge",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "dynamink679bb9f9CreateAuthChallenge",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "dynamink679bb9f9VerifyAuthChallengeResponse",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
+      "customAuth": true,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      }
     }
   },
   "storage": {
@@ -28,27 +75,20 @@
         }
       ]
     },
-    "dynaminkHTTP": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
+    "dynamink679bb9f9DefineAuthChallenge": {
       "build": true,
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "dynamink12b70ec9",
-          "attributes": [
-            "UserPoolId"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "DynaminkDB",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "dynamink679bb9f9CreateAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "dynamink679bb9f9VerifyAuthChallengeResponse": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "api": {

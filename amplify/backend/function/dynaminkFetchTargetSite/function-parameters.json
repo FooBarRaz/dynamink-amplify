@@ -1,9 +1,0 @@
-{
-    "permissions": {
-        "function": {
-            "dynaminkManageTargets": [
-                "read"
-            ]
-        }
-    }
-}
