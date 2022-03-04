@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Amplify from 'aws-amplify';
 // Get the aws resources configuration parameters
-import awsconfig from './aws-exports'; // if you are using Amplify CLI
+import awsconfig from '../aws-exports'
 Amplify.configure(awsconfig);
 
 function App() {
