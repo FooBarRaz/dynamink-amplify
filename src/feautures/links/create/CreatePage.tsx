@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { withAuthenticator } from "aws-amplify-react";
 import { Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { actions as linkActions, selectMyLinks } from '../linksStore';
 import { CreateSiteForm } from './CreateSiteForm';
 import { LinksGrid } from '../view/LinksGrid';
+import { withAuth } from '../../../app/withAuth';
 //
 // type LinkValues = {
 //     'url': string
@@ -30,9 +30,9 @@ const CreatePage = () => {
     const dispatch = useAppDispatch()
     const links = useAppSelector(selectMyLinks)
 
-    useEffect(() => {
-        dispatch(linkActions.fetchAllMyLinks())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(linkActions.fetchAllMyLinks())
+    // }, [])
 
     return (
         <div>
@@ -43,4 +43,4 @@ const CreatePage = () => {
     )
 }
 
-export default withAuthenticator(CreatePage, true);
+export default withAuth(CreatePage);

@@ -8,6 +8,10 @@ import CreateTargetSite from "./feautures/links/create/CreatePage";
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import MyLinksPage from './feautures/links/view/MyLinksPage';
+import EditLinkPage from './feautures/links/edit/EditLinkPage';
+import { actions as linkActions } from './feautures/links/linksStore'
+
+store.dispatch(linkActions.fetchAllMyLinks())
 
 const routing = (
     <React.StrictMode>
@@ -19,6 +23,9 @@ const routing = (
                     </Route>
                     <Route path="/my-links">
                         <MyLinksPage/>
+                    </Route>
+                    <Route path="/edit/:linkId">
+                        <EditLinkPage/>
                     </Route>
                     <Route path="/">
                         <App/>

@@ -141,14 +141,13 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
  * HTTP put method for insert object *
  *************************************/
 
-app.put(path, function (req, res) {
+app.put(path + '/:linkId', function (req, res) {
 
-    if (userIdPresent) {
-        req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-    }
+    req.body['user'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
 
     let putItemParams = {
         TableName: tableName,
+        Key: { targetSite: req.params['linkId'] },
         Item: req.body
     }
     dynamodb.put(putItemParams, (err, data) => {

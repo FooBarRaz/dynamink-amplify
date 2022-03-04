@@ -9,13 +9,23 @@ type LinkState = {
         errors: string[],
         successMessage?: string;
     }
+    editing: {
+        [linkId: string]: {
+            name: string;
+            url: string;
+            errors: string[],
+            success: boolean,
+            inProgress: boolean
+        }
+    }
 }
 
 const initialState: LinkState = {
     myLinks: [],
     creation: {
         errors: [],
-    }
+    },
+    editing: {}
 };
 
 const linksSlice = createSlice({
@@ -39,6 +49,30 @@ const linksSlice = createSlice({
             beginCreation(state) {
                 state.creation.errors = []
                 state.creation.successMessage = undefined
+            },
+            beginEditing(state, action: PayloadAction<string>) {
+                const linkId = action.payload;
+                const link = state.myLinks.find(link => linkId === link.targetSite)
+                if (link) {
+                    state.editing[linkId] = {
+                        errors: [],
+                        name: link.name,
+                        url: link.configuration.value,
+                        success: false,
+                        inProgress: false
+                    }
+                }
+            },
+            beginUpdate(state, action: PayloadAction<string>) {
+                state.editing[action.payload].inProgress = true;
+            },
+            confirmUpdate(state, action: PayloadAction<string>) {
+                state.editing[action.payload].inProgress = false;
+                state.editing[action.payload].success = true;
+            },
+            rejectUpdate(state, action: PayloadAction<string>) {
+                state.editing[action.payload].inProgress = false;
+                state.editing[action.payload].errors = ['failed to update'];
             }
         }
     }
@@ -59,6 +93,7 @@ type CreateSiteRequest = {
     siteName: string;
     url: string;
 }
+
 export const createLink = createAsyncThunk('links/create',
     (payload: CreateSiteRequest, options) => {
         options.dispatch(actions.beginCreation())
@@ -96,14 +131,37 @@ export const fetchAllMyLinks = createAsyncThunk('links/fetchAll',
             .catch(err => options.dispatch(actions.setCreationError(err.message)))
     });
 
+type UpdateLinkRequest = {
+    name: string;
+    url: string;
+}
+
+export const updateLink = (linkId: string) => createAsyncThunk(`links/update/${linkId}`,
+    (payload: UpdateLinkRequest, options) => {
+        const body = {targetSite: linkId, name: payload.name, configuration: {value: payload.url, type: 'URL'}}
+        const request = {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body
+        }
+
+        API.put("DynaminkREST", `/targets/${linkId}`, request)
+            .then(resp => {
+                return options.dispatch(actions.confirmUpdate(linkId));
+            })
+            .catch(err => options.dispatch(actions.rejectUpdate(linkId)))
+    });
+
 export const actions = {
     ...linksSlice.actions,
     createLink,
-    fetchAllMyLinks
+    fetchAllMyLinks,
+    updateLink,
 }
 
 // selectors
 
 export const selectMyLinks = (state: RootState) => state.links.myLinks
-
-
+export const selectLink = (linkId: string) => (state: RootState): Link | undefined => selectMyLinks(state).find(link => linkId === link.targetSite)
