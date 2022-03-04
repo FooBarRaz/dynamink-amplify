@@ -3,10 +3,10 @@
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
-    "framework": "react-native",
+    "framework": "react",
     "config": {
-      "SourceDir": "/",
-      "DistributionDir": "dist",
+      "SourceDir": "src",
+      "DistributionDir": "build",
       "BuildCommand": "yarn build",
       "StartCommand": "yarn start"
     }
