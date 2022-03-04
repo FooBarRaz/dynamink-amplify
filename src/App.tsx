@@ -4,6 +4,7 @@ import './App.css';
 import Amplify from 'aws-amplify';
 // Get the aws resources configuration parameters
 import awsconfig from './aws-exports'
+import { Link } from 'react-router-dom';
 Amplify.configure(awsconfig);
 
 function App() {
@@ -15,12 +16,12 @@ function App() {
         <p>
           Click the button below to start creating your target sites
         </p>
-        <a
+        <Link
           className="App-link"
-          href="/create"
+          to="/create"
         >
           Login
-        </a>
+        </Link>
       </header>
     </div>
   );
